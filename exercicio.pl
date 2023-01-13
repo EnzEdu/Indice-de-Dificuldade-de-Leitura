@@ -2,10 +2,8 @@
 use strict;
 use warnings;
 
-# /[^\n]*/g = coleta parágrafos
-# /[^,.]+/g = coleta frases
 
-my $pathArquivo = "./loremIpsum";
+my $pathArquivo = $ARGV[0];
 my $quantFrases = 0;
 #my $quantPalavras = 0;
 #my $quantPalavrasDificeis = 0;
@@ -38,7 +36,7 @@ sub calculaFrases
     # Salva a quantidade de frases
     $quantFrases = scalar(@frases);
 
-    print $quantFrases;
+    print "quantFrases=$quantFrases:";
 }
 
 
