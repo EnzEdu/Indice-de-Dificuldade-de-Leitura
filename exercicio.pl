@@ -8,18 +8,23 @@ sub calculaFrases
     # Identifica as frases e salva em um vetor
     my @frases = ($_[0] =~ /[^,.\n]+/g);
 
-    # Retorna o tamanho do vetor
-    return scalar(@frases);
+    # Retorna o vetor
+    return @frases;
 }
 
 
 sub calculaPalavras
 {
+    # Identifica as palavras e salva em um vetor
+    my @palavras = ($_[0] =~ /\w+/g);
+
+    # Retorna o vetor
+    return @palavras;
 }
 
 
 sub calculaPalavrasDificeis
-{
+{    
 }
 
 
@@ -41,11 +46,10 @@ sub algoritmo
 
 
     # Algoritmo
-    my $quantFrases = calculaFrases($texto);
-    my $quantPalavras = 0;
-    #my $quantPalavras = calculaPalavras($texto);
-    my $quantPalavrasDificeis = 0;
-    #my $quantPalavrasDificeis = calculaPalavrasDificeis($texto);
+    my $quantFrases             = scalar(calculaFrases($texto));
+    my $quantPalavras           = scalar(calculaPalavras($texto));
+    my $quantPalavrasDificeis   = 0;
+    #my $quantPalavrasDificeis  = scalar(calculaPalavrasDificeis($texto));
 
 
 
