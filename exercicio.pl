@@ -3,36 +3,30 @@ use strict;
 use warnings;
 
 
-my $pathArquivo = $ARGV[0];
-my $quantFrases = 0;
-#my $quantPalavras = 0;
-#my $quantPalavrasDificeis = 0;
-#my $proporcaoPalavrasDificeis = 0;
-#my $indice = 0;
-
-
 sub calculaFrases
 {
-    # Conta o numero de frases no texto
+    # Identifica as frases e salva em um vetor
     my @frases = ($_[0] =~ /[^,.\n]+/g);
 
-    # Conserta as frases que "comecam" com whitespace
-    #for my $frase(@frases)
-    #{
-        #$frase = substr($frase, 1, length($frase)) if (substr($frase, 0, 1) eq " ");
-    #}
+    # Retorna o tamanho do vetor
+    return scalar(@frases);
+}
 
-    # Salva na variavel
-    $quantFrases = scalar(@frases);
 
-    print "quantFrases=$quantFrases:";
+sub calculaPalavras
+{
+}
+
+
+sub calculaPalavrasDificeis
+{
 }
 
 
 sub algoritmo
 {
     # Abre o arquivo
-    open(fileHandler, '<', $pathArquivo) or die $!;
+    open(fileHandler, '<', $ARGV[0]) or die $!;
 
     # Salva o texto do arquivo
     my $texto = "";
@@ -45,8 +39,18 @@ sub algoritmo
     close(fileHandler);
 
 
+
     # Algoritmo
-    calculaFrases($texto);
+    my $quantFrases = calculaFrases($texto);
+    my $quantPalavras = 0;
+    #my $quantPalavras = calculaPalavras($texto);
+    my $quantPalavrasDificeis = 0;
+    #my $quantPalavrasDificeis = calculaPalavrasDificeis($texto);
+
+
+
+    # Imprime os valores obtidos
+    print "quantFrases=$quantFrases:quantPalavras=$quantPalavras:quantPalavrasDificeis=$quantPalavrasDificeis:"
 }
 
 
