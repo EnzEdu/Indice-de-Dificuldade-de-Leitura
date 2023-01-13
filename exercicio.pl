@@ -10,34 +10,44 @@ my $quantFrases = 0;
 #my $proporcaoPalavrasDificeis = 0;
 #my $indice = 0;
 
+
 sub calculaFrases
 {
-    # Abre o arquivo de texto
-    open(fileHandler, '<', $pathArquivo) or die $!;
-
-    # Percorre o texto do arquivo e salva as frases em um array
-    my @frases = ();
-    while (<fileHandler>)
-    {
-        push(@frases, $_ =~ /[^,.\n]+/g);
-    }
-
-    # Fecha o arquivo
-    close(fileHandler);
-
+    # Conta o numero de frases no texto
+    my @frases = ($_[0] =~ /[^,.\n]+/g);
 
     # Conserta as frases que "comecam" com whitespace
-    for my $frase(@frases)
-    {
-        $frase = substr($frase, 1, length($frase)) if (substr($frase, 0, 1) eq " ");
-    }
+    #for my $frase(@frases)
+    #{
+        #$frase = substr($frase, 1, length($frase)) if (substr($frase, 0, 1) eq " ");
+    #}
 
-
-    # Salva a quantidade de frases
+    # Salva na variavel
     $quantFrases = scalar(@frases);
 
     print "quantFrases=$quantFrases:";
 }
 
 
-calculaFrases();
+sub algoritmo
+{
+    # Abre o arquivo
+    open(fileHandler, '<', $pathArquivo) or die $!;
+
+    # Salva o texto do arquivo
+    my $texto = "";
+    while (<fileHandler>) 
+    {
+        $texto = $texto . $_;
+    }
+
+    # Fecha o arquivo
+    close(fileHandler);
+
+
+    # Algoritmo
+    calculaFrases($texto);
+}
+
+
+algoritmo();
