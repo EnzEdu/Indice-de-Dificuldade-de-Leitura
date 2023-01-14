@@ -24,19 +24,28 @@ sub calculaPalavras
 }
 
 
-sub calculaSilabas
+sub calculaPalavrasDificeis
 {
-    # Identifica as "sílabas" e salva em um vetor
-    my @silabas = ($_[0] =~ /(?:u[aáãÁÃeéÉiíÍoóÓõÕ]?[eiom]?|[íúÍÚ]|a[eou]?|iu?|o[aiu]?|[aeou][uio]?|[aáàâãÁÀÂÃeéêÉÊioóôõÓÔÕu]{1}[io]?)/ig);
+    # Pega o vetor de palavras
+    my @vetorPalavras = calculaPalavras($_[0]);
 
-    #for my $coiso (@silabas)
-    #{
-    #    print "$coiso ";
-    #}
-    #print "\n";
+    # Identifica as "palavras dificeis" e salva em um vetor
+    my @palavrasDificeis = ();
+    my $numSilabas = 0;
+    for my $palavra (@vetorPalavras)
+    {
+        # Junta as silabas da palavra em uma lista vazia, e salva na variavel o tamanho da lista
+        $numSilabas = () = ($palavra =~ /(?:u[aáãÁÃeéÉiíÍoóÓõÕ]?[eiom]?|[íúÍÚ]|a[eou]?|iu?|o[aiu]?|[aeou][uio]?|[aáàâãÁÀÂÃeéêÉÊioóôõÓÔÕu]{1}[io]?)/ig);
+
+        # Palavra tem mais de 3 silabas (palavra dificil!)
+        if ($numSilabas >= 3)
+        {
+            push(@palavrasDificeis, $palavra);
+        }
+    }
 
     # Retorna o vetor
-    return @silabas;
+    return @palavrasDificeis;
 }
 
 
@@ -58,17 +67,18 @@ sub algoritmo
 
 
     # Algoritmo
-    my $quantFrases             = 0;
-    #my $quantFrases            = scalar(calculaFrases($texto));
-    my $quantPalavras           = 0;
-    #my $quantPalavras          = scalar(calculaPalavras($texto));
-    #my $quantSilabas           = 0;
-    my $quantSilabas            = scalar(calculaSilabas($texto));
+        # Valores esperados para
+            # loremIpsum.txt    = (110, 501, ---)
+            # testeSilabico.txt = (---,  99,  60)
+        # (verificado em https://www.separarensilabas.com/index-pt.php)
+    my $quantFrases             = scalar(calculaFrases($texto));
+    my $quantPalavras           = scalar(calculaPalavras($texto));
+    my $quantPalavrasDificeis   = scalar(calculaPalavrasDificeis($texto));
 
 
 
     # Imprime os valores obtidos
-    print "quantFrases=$quantFrases:quantPalavras=$quantPalavras:quantSilabas=$quantSilabas:"
+    print "quantFrases=$quantFrases:quantPalavras=$quantPalavras:quantPalavrasDificeis=$quantPalavrasDificeis:"
 }
 
 
