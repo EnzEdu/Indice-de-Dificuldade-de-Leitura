@@ -34,10 +34,10 @@ sub calculaPalavrasDificeis
     my $numSilabas = 0;
     for my $palavra (@vetorPalavras)
     {
-        # Junta as silabas da palavra em uma lista vazia, e salva na variavel o tamanho da lista
+        # Junta as silabas da palavra em uma lista vazia, e salva na variavel o tamanho final dessa lista
         $numSilabas = () = ($palavra =~ /(?:u[aáãÁÃeéÉiíÍoóÓõÕ]?[eiom]?|[íúÍÚ]|a[eou]?|iu?|o[aiu]?|[aeou][uio]?|[aáàâãÁÀÂÃeéêÉÊioóôõÓÔÕu]{1}[io]?)/ig);
 
-        # Palavra tem mais de 3 silabas (palavra dificil!)
+        # Palavra tem 3 ou mais silabas (palavra dificil!)
         if ($numSilabas >= 3)
         {
             push(@palavrasDificeis, $palavra);
@@ -78,7 +78,7 @@ sub algoritmo
 
 
     # Imprime os valores obtidos
-    print "quantFrases=$quantFrases:quantPalavras=$quantPalavras:quantPalavrasDificeis=$quantPalavrasDificeis:"
+    print "$quantFrases:$quantPalavras:$quantPalavrasDificeis:"
 }
 
 

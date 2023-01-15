@@ -19,8 +19,14 @@ PATHARQUIVO=$1
 # Envia o arquivo para o script em perl e salva os resultados
 VALORESPERL=$(perl ./exercicio.pl $PATHARQUIVO)
 
+# Quebra os valores retornados em variaveis
+NUM_FRASES=$(echo $VALORESPERL | cut -d ':' -f 1)
+NUM_PALAVRAS=$(echo $VALORESPERL | cut -d ':' -f 2)
+NUM_P_DIF=$(echo $VALORESPERL | cut -d ':' -f 3)
+#echo "$NUM_FRASES $NUM_PALAVRAS $NUM_P_DIF"
 
-# Impressao (temporario)
-echo " "
-echo "$VALORESPERL"
+# Media de palavras por frase (num inteiro)
+MP=$(echo "$NUM_PALAVRAS/$NUM_FRASES" | bc)
+echo $MP
 
+# 
