@@ -17,7 +17,7 @@ fi
 PATHARQUIVO=$1
 
 # Envia o arquivo para o script em perl e salva os resultados
-VALORESPERL=$(perl ./exercicio.pl $PATHARQUIVO)
+VALORESPERL=$(perl ./partePerl.pl $PATHARQUIVO)
 
 # Quebra os valores retornados em variaveis
 NUM_FRASES=$(echo $VALORESPERL | cut -d ':' -f 1)
@@ -36,4 +36,5 @@ INDICE=$(echo $MP $PROP_P_DIF | awk '{print int(0.4 * ($1 + $2) + 0.5)}')
 
 
 # Resultado do script
-echo $INDICE
+echo "Indice de dificuldade de leitura = $INDICE"
+echo "O texto pode ser compreendido por uma criança de $INDICE anos!"
