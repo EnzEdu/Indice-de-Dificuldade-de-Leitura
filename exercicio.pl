@@ -67,10 +67,6 @@ sub algoritmo
 
 
     # Algoritmo
-        # Valores esperados para
-            # loremIpsum.txt    = (110, 501, ---)
-            # testeSilabico.txt = (---,  99,  60)
-        # (verificado em https://www.separarensilabas.com/index-pt.php)
     my $quantFrases             = scalar(calculaFrases($texto));
     my $quantPalavras           = scalar(calculaPalavras($texto));
     my $quantPalavrasDificeis   = scalar(calculaPalavrasDificeis($texto));
